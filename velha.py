@@ -14,6 +14,21 @@ def novo_jogo() -> dict:
     return jogo
 
 
+def mostrar_jogo(jogo: dict,) -> None:
+    letras = utils.obter_letras(config.COLUNAS)
+    print('  ', end='')
+    print(*letras, sep=' ')
+
+    for coord, slot in jogo.items():
+        ultima_letra = letras[-1]
+        primeira_letra = letras[0]
+
+        start = f'{coord[1]} ' if coord[0] == primeira_letra else ''
+        end = '\n' if coord[0] == ultima_letra else ' '
+
+        print(start + slot, end=end)
+
+
 def nova_jogada(jogo: dict) -> None:
     jogada = 'x' if config.ultima_jogada == 'o' else 'o'
 
@@ -28,10 +43,6 @@ def nova_jogada(jogo: dict) -> None:
 
     jogo[coordenada] = jogada
     config.ultima_jogada = jogada
-
-
-def jogo_finalizado(jogo: dict) -> bool:
-    return False
 
 
 def status_jogo(jogo: dict) -> str:
@@ -50,34 +61,8 @@ def status_jogo(jogo: dict) -> str:
     return 'empate'
 
 
-def mensagem_final(status: str):
-    if status == 'x' or status == 'o':
-        return f'A partida terminou em vitoria do jogador {status}! Deseja jogar novamente? S/N:'
-    
-    if status == 'empate':
-        return 'A partida terminou empatada! Deseja jogar novamente? S/N:'
-    
-    if status == 'jogando':
-        return 'Partida em andamento...'
-
-
-def mostrar_jogo(jogo: dict,) -> None:
-    letras = utils.obter_letras(config.COLUNAS)
-    print('  ', end='')
-    print(*letras, sep=' ')
-
-    for coord, slot in jogo.items():
-        ultima_letra = letras[-1]
-        primeira_letra = letras[0]
-
-        start = f'{coord[1]} ' if coord[0] == primeira_letra else ''
-        end = '\n' if coord[0] == ultima_letra else ' '
-
-        print(start + slot, end=end)
-
-
 def finalizar_jogo(status: str) -> bool:
-    mensagem = mensagem_final(status)
+    mensagem = utils.obter_mensagem_final(status)
     print(mensagem, end=' ')
 
     while True:
