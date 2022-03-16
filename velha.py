@@ -5,10 +5,10 @@ import config
 
 def novo_jogo() -> dict:
     jogo = {}
-    letras = utils.obter_letras(config.COLUNAS)
+    letras = utils.obter_letras(config.TAMANHO)
 
-    for lin in range(config.LINHAS):
-        for col in range(config.COLUNAS):
+    for lin in range(config.TAMANHO):
+        for col in range(config.TAMANHO):
             letra = letras[col]
             jogo[f'{letra}{lin + 1}'] = '-'
 
@@ -16,7 +16,7 @@ def novo_jogo() -> dict:
 
 
 def mostrar_jogo(jogo: dict,) -> None:
-    letras = utils.obter_letras(config.COLUNAS)
+    letras = utils.obter_letras(config.TAMANHO)
 
     print('  ', end='')
     print(*letras, sep=' ')
@@ -32,7 +32,7 @@ def mostrar_jogo(jogo: dict,) -> None:
 
 
 def nova_jogada(jogo: dict) -> None:
-    jogada = 'x' if config.ultima_jogada == 'o' else 'o'
+    jogada = 'x' if regras.ultima_jogada == 'o' else 'o'
 
     while True:
         print(f'Jogador {jogada.upper()}: ', end='')
@@ -43,7 +43,7 @@ def nova_jogada(jogo: dict) -> None:
         print('Coordenada invalida. Tente novamente.')
 
     jogo[coordenada] = jogada
-    config.ultima_jogada = jogada
+    regras.ultima_jogada = jogada
 
 
 def status_jogo(jogo: dict) -> str:
@@ -55,8 +55,8 @@ def status_jogo(jogo: dict) -> str:
             if jogo[coord] == 'x': contem_x += 1
             elif jogo[coord] == 'o': contem_o += 1
 
-        if contem_x == 3: return 'x'
-        if contem_o == 3: return 'o'
+        if contem_x == config.TAMANHO: return 'x'
+        if contem_o == config.TAMANHO: return 'o'
 
     if '-' in jogo.values(): return 'jogando'
     return 'empate'

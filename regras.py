@@ -1,3 +1,4 @@
+# TODO: Refatorar para funcionar com jogos de qualquer tamanho
 sequencias_vitoria = [
     ['a1', 'a2', 'a3'],
     ['b1', 'b2', 'b3'],
