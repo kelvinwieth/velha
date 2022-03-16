@@ -6,6 +6,7 @@ import config
 def novo_jogo() -> dict:
     jogo = {}
     letras = utils.obter_letras(config.COLUNAS)
+
     for lin in range(config.LINHAS):
         for col in range(config.COLUNAS):
             letra = letras[col]
@@ -16,6 +17,7 @@ def novo_jogo() -> dict:
 
 def mostrar_jogo(jogo: dict,) -> None:
     letras = utils.obter_letras(config.COLUNAS)
+
     print('  ', end='')
     print(*letras, sep=' ')
 
@@ -36,8 +38,7 @@ def nova_jogada(jogo: dict) -> None:
         print(f'Jogador {jogada.upper()}: ', end='')
         coordenada = input()
 
-        if coordenada in jogo.keys() and jogo[coordenada] == '-':
-            break
+        if coordenada in jogo.keys() and jogo[coordenada] == '-': break
 
         print('Coordenada invalida. Tente novamente.')
 
