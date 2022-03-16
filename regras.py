@@ -1,5 +1,5 @@
 # TODO: Refatorar para funcionar com jogos de qualquer tamanho
-sequencias_vitoria = [
+sequencias_vitoria: list = [
     ['a1', 'a2', 'a3'],
     ['b1', 'b2', 'b3'],
     ['c1', 'c2', 'c3'],
@@ -12,4 +12,4 @@ sequencias_vitoria = [
     ['a3', 'b2', 'c1']
 ]
 
-ultima_jogada = 'o'
+ultima_jogada: str = 'o'

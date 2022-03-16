@@ -15,7 +15,7 @@ def novo_jogo() -> dict:
     return jogo
 
 
-def mostrar_jogo(jogo: dict,) -> None:
+def mostrar_jogo(jogo: dict) -> None:
     letras = utils.obter_letras(config.TAMANHO)
 
     print('  ', end='')
