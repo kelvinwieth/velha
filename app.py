@@ -1,11 +1,20 @@
-import printer
 import velha
-import config
+
 
 jogo = velha.novo_jogo()
+velha.mostrar_jogo(jogo)
 
-printer.mostrar_jogo(jogo)
-
-while not config.vencedor:
+while True:
     velha.nova_jogada(jogo)
-    printer.mostrar_jogo(jogo)
+    velha.mostrar_jogo(jogo)
+
+    status = velha.status_jogo(jogo)
+
+    if status == 'jogando': continue
+
+    continuar = velha.finalizar_jogo(status)
+
+    if not continuar: break
+    else:
+        jogo = velha.novo_jogo()
+        velha.mostrar_jogo(jogo)
